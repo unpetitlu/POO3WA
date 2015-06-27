@@ -1,0 +1,1 @@
+Page rendu en php : <?= $firstname ?>

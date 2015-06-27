@@ -58,3 +58,30 @@ dump($objectuser2);
 dump($objectuser3);
 
 
+/**
+ * Templating
+ */
+use Symfony\Component\Templating\PhpEngine;
+use Symfony\Component\Templating\TemplateNameParser;
+use Symfony\Component\Templating\Loader\FilesystemLoader;
+
+
+$loader = new FilesystemLoader(__DIR__.'/views/%name%');
+
+$templating = new PhpEngine(new TemplateNameParser(), $loader);
+
+echo $templating->render('hello.php', array('firstname' => 'Ludo'));
+
+
+
+/**
+ * Twig
+ */
+$loader = new Twig_Loader_Filesystem(__DIR__.'/views/');
+$twig = new Twig_Environment($loader, array(
+    'cache' => __DIR__.'caches/',
+    'debug' => true
+));
+
+echo $twig->render('index.html.twig', array('firstname' => 'Julien'));
+
